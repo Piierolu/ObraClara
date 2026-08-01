@@ -1,0 +1,32 @@
+[
+  {
+    "name": "contract",
+    "text": "CONSTRUCTION CONTRACT\nContract number: CT-2026-04\nContract limit: $250,000.00",
+    "expected_document_type": "CONTRACT",
+    "expected_fields": {"contract_number": "CT-2026-04", "contract_limit": "250000"}
+  },
+  {
+    "name": "change-order",
+    "text": "CHANGE ORDER\nApproved change amount: EUR 12.500,50",
+    "expected_document_type": "CHANGE_ORDER",
+    "expected_fields": {"approved_change_amount": "12500.5"}
+  },
+  {
+    "name": "progress-certificate",
+    "text": "PROGRESS CERTIFICATE\nCertified quantity: 40.5\nRetention percent: 5%",
+    "expected_document_type": "PROGRESS_CERTIFICATE",
+    "expected_fields": {"certified_quantity": "40.5", "retention_percent": "5"}
+  },
+  {
+    "name": "invoice",
+    "text": "TAX INVOICE\nInvoice number: INV-902\nSubtotal: 1000\nTax: 210\nTotal: 1210",
+    "expected_document_type": "INVOICE",
+    "expected_fields": {"invoice_number": "INV-902", "subtotal": "1000", "tax": "210", "total": "1210"}
+  },
+  {
+    "name": "delivery-note",
+    "text": "DELIVERY NOTE\nMaterials received in good condition.",
+    "expected_document_type": "DELIVERY_NOTE",
+    "expected_fields": {}
+  }
+]

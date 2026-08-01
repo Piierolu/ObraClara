@@ -82,7 +82,7 @@ Tambien pueden ejecutarse por componente:
 
 ```powershell
 cd apps/web
-npm test -- --run
+npm test
 npm run build
 
 cd ../ai-service

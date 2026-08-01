@@ -19,7 +19,7 @@ apps/ai-service/**/__pycache__/
 apps/ai-service/generated/
 apps/ai-service/*.egg-info/
 
-data/
+/data/
 coverage/
 .coverage
 playwright-report/
