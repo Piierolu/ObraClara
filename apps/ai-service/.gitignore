@@ -1,0 +1,5 @@
+__pycache__/
+.pytest_cache/
+.venv/
+*.egg-info/
+obra_ai/generated/document_ai_pb2*.py

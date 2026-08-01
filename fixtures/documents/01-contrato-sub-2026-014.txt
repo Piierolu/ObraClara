@@ -1,0 +1,14 @@
+CONTRATO DE SUBCONTRATACION SUB-2026-014
+Proyecto: Residencial Alameda
+Numero de contrato: SUB-2026-014
+Contratista: Constructora Horizonte Demo
+Subcontratista: Estructuras del Norte SL
+
+Tarifa contractual: 80 EUR
+Porcentaje de retencion contractual: 5 %
+Importe del contrato: 120000 EUR
+Pagos anteriores: 40000 EUR
+
+La tarifa incluye suministro y colocacion de hormigon estructural.
+La retencion aplicable sera del cinco por ciento sobre cada certificacion.
+Contacto de obra: supervision@horizonte.example

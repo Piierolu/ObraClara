@@ -1,0 +1,15 @@
+FACTURA FAC-1042
+Proyecto: Residencial Alameda
+Numero de factura: FAC-1042
+Contrato relacionado: SUB-2026-014
+
+Tarifa facturada: 85 EUR
+Cantidad facturada: 1000 m3
+Porcentaje de retencion facturada: 2 %
+Subtotal: 85000 EUR
+IVA: 17850 EUR
+Importe de retencion: 1700 EUR
+Importe total: 102000 EUR
+Pago actual: 102000 EUR
+
+Cuenta de contacto: facturacion@estructuras.example

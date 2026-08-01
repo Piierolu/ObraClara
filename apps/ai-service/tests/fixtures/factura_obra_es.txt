@@ -1,0 +1,19 @@
+FACTURA DE OBRA N.º FAC-2026-017
+Número de factura: FAC-2026-017
+Número de contrato: OC-MAD-042
+Tarifa contractual: 125,50 EUR
+Tarifa facturada: 132,00 EUR
+Cantidad facturada: 80,00
+Cantidad de avance: 75,00
+Porcentaje de retención contractual: 5 %
+Porcentaje de retención facturada: 7 %
+Monto del contrato: 250.000,00 EUR
+Pagos anteriores: 180.000,00 EUR
+Pago actual: 10.000,00 EUR
+
+RESUMEN ECONÓMICO
+Subtotal: 10.560,00 EUR
+Importe IVA: 2.217,60 EUR
+Importe de retención: 739,20 EUR
+Importe total: 12.038,40 EUR
+Importe aprobado de la orden de cambio: 1.500,00 EUR

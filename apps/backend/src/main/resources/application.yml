@@ -1,0 +1,49 @@
+spring:
+  application:
+    name: obraclara-backend
+  datasource:
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/obraclara}
+    username: ${DATABASE_USERNAME:obraclara}
+    password: ${DATABASE_PASSWORD:obraclara}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 20MB
+  flyway:
+    enabled: true
+management:
+  tracing:
+    sampling:
+      probability: ${TRACING_SAMPLING_PROBABILITY:1.0}
+  otlp:
+    tracing:
+      endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4318/v1/traces}
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+server:
+  error:
+    include-message: never
+obraclara:
+  storage:
+    type: ${STORAGE_TYPE:local}
+    local-directory: ${LOCAL_STORAGE_PATH:./data/uploads}
+    minio:
+      endpoint: ${MINIO_ENDPOINT:}
+      access-key: ${MINIO_ACCESS_KEY:}
+      secret-key: ${MINIO_SECRET_KEY:}
+      bucket: ${MINIO_BUCKET:obraclara-documents}
+  ai:
+    grpc-address: ${AI_GRPC_ADDRESS:}
+  temporal:
+    enabled: ${TEMPORAL_ENABLED:false}
+    target: ${TEMPORAL_TARGET:127.0.0.1:7233}
+    address: ${TEMPORAL_ADDRESS:}
+    task-queue: ${TEMPORAL_TASK_QUEUE:obraclara-document-processing}
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:3000,http://localhost:5173}
