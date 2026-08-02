@@ -2,7 +2,7 @@ import { useEffect, useRef, useState, type FormEvent } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Icon } from '../components/Icon'
 import { EmptyState, ErrorState, LoadingState, PageHeader } from '../components/Ui'
-import { api } from '../lib/api'
+import { api, isDemoMode } from '../lib/api'
 import { PROJECTS_CHANGED_EVENT, SELECTED_PROJECT_KEY } from '../lib/projectSelection'
 import { useApi } from '../lib/useApi'
 import type { CreateProjectInput, Project } from '../types'
@@ -41,7 +41,7 @@ export function DashboardPage() {
       </article>)}
     </section>
     <section className="section-block">
-      <div className="section-heading"><div><span className="eyebrow">Cartera activa</span><h2>Proyectos recientes</h2></div><span className="muted">Datos actuales del servidor</span></div>
+      <div className="section-heading"><div><span className="eyebrow">Cartera activa</span><h2>Proyectos recientes</h2></div><span className="muted">{isDemoMode ? 'Datos simulados para la demo' : 'Datos actuales del servidor'}</span></div>
       <div className="project-table" aria-label="Proyectos recientes">
         <div className="project-row table-head"><span>Proyecto</span><span>Avance</span><span>Documentos</span><span>Hallazgos</span><span>Actividad</span><span /></div>
         {data.projects.length === 0 && <EmptyState title="Aún no hay proyectos" text="Crea el primer proyecto para organizar su expediente documental." action={<button type="button" className="button primary" onClick={() => setCreating(true)}>Crear proyecto</button>} />}

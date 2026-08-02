@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { NavLink, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import { useAuth } from '../auth/AuthContext'
-import { api } from '../lib/api'
+import { api, isDemoMode } from '../lib/api'
 import { useApi } from '../lib/useApi'
 import { getRouteProjectId, PROJECTS_CHANGED_EVENT, resolveProjectId, SELECTED_PROJECT_KEY } from '../lib/projectSelection'
 import { Icon, type IconName } from './Icon'
@@ -46,7 +46,11 @@ export function AppShell() {
     {open && <button type="button" className="nav-scrim" aria-label="Cerrar menú" onClick={() => setOpen(false)} />}
     <aside className={`sidebar ${open ? 'is-open' : ''}`}>
       <Brand />
-      <div className="workspace-label"><span>Espacio de trabajo</span><strong>Cartera ObraClara</strong></div>
+      <div className={`workspace-label ${isDemoMode ? 'demo-workspace' : ''}`}>
+        <span>{isDemoMode ? 'Demo pública' : 'Espacio de trabajo'}</span>
+        <strong>Cartera ObraClara</strong>
+        {isDemoMode && <small>Datos simulados · <a href="https://github.com/Piierolu/ObraClara" target="_blank" rel="noreferrer">Ver código</a></small>}
+      </div>
       <nav aria-label="Navegación principal" aria-busy={loading}>
         <NavLink to="/" end onClick={() => setOpen(false)} className={({ isActive }) => isActive ? 'active' : ''}><Icon name="grid" /><span>Proyectos</span></NavLink>
         {projectId && projectNav.map((item) => {

@@ -15,6 +15,7 @@ import {
 afterEach(() => {
   vi.restoreAllMocks()
   vi.unstubAllGlobals()
+  vi.unstubAllEnvs()
   localStorage.clear()
 })
 
@@ -136,6 +137,20 @@ describe('adaptadores de API Spring', () => {
     })
     expect(fetchMock.mock.calls[1][0]).toBe('/api/documents/document-1/process')
     expect(fetchMock.mock.calls[1][1]).toMatchObject({ method: 'POST' })
+  })
+
+  it('conserva las cargas simuladas dentro del proyecto de la demo pública', async () => {
+    vi.resetModules()
+    vi.stubEnv('VITE_DEMO_MODE', 'true')
+    const { api: demoApi } = await import('./api')
+    const project = await demoApi.createProject({ name: 'Obra Demo', code: 'DEMO-01', location: 'Lima', contractAmount: 50000 })
+
+    await demoApi.uploadDocument(project.id, new File(['total: 50000'], 'factura-demo.txt', { type: 'text/plain' }))
+
+    await expect(demoApi.getProject(project.id)).resolves.toMatchObject({
+      documentCount: 1,
+      documents: [{ name: 'factura-demo.txt', status: 'processed', uploadedBy: 'Tú' }],
+    })
   })
 
   it('elimina la credencial inválida y notifica un 401', async () => {

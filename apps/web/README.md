@@ -2,6 +2,8 @@
 
 Frontend React del MVP de control documental de ObraClara.
 
+Demo publica: https://obraclara-demo.vercel.app
+
 ## Desarrollo
 
 ```bash
@@ -11,6 +13,8 @@ npm run dev
 ```
 
 `VITE_DEMO_MODE=true` usa exclusivamente datos tipados locales. Con cualquier otro valor, todas las operaciones se realizan contra `VITE_API_URL` y no existe fallback silencioso.
+
+La configuracion `vercel.json` mantiene las rutas de la SPA y la variable `VITE_DEMO_MODE=true` debe configurarse en Vercel para produccion y previews.
 
 ## Verificación
 

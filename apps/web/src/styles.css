@@ -78,6 +78,10 @@ button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visib
 .workspace-label { margin: 35px 9px 18px; padding: 14px 0; border-top: 1px solid rgba(255,255,255,.12); border-bottom: 1px solid rgba(255,255,255,.12); }
 .workspace-label span { display: block; color: #91aa9f; font-size: 9px; text-transform: uppercase; letter-spacing: .13em; margin-bottom: 5px; }
 .workspace-label strong { font-size: 12px; }
+.workspace-label small { display: block; margin-top: 7px; color: #aebfb7; font-size: 9px; line-height: 1.45; }
+.workspace-label small a { color: #f0a078; font-weight: 700; text-underline-offset: 2px; }
+.workspace-label.demo-workspace { padding-left: 10px; border-left: 2px solid var(--orange); }
+.workspace-label.demo-workspace > span { color: #f0a078; }
 .sidebar nav { display: grid; gap: 3px; }
 .sidebar nav a { min-height: 44px; padding: 0 12px; display: flex; align-items: center; gap: 12px; color: #b8c7c1; text-decoration: none; font-size: 13px; font-weight: 500; border-radius: 3px; position: relative; }
 .sidebar nav a svg { width: 18px; height: 18px; }

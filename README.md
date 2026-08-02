@@ -2,6 +2,14 @@
 
 ObraClara es un MVP de portafolio para auditar facturas de construccion contra contratos y certificaciones de avance. Cada hallazgo y respuesta conserva documento, pagina y fragmento exacto. Si no existe evidencia persistida, la API se niega a responder.
 
+[Abrir demo publica](https://obraclara-demo.vercel.app) | [Ver integracion continua](https://github.com/Piierolu/ObraClara/actions)
+
+## Demo publica
+
+La demo en Vercel ejecuta el frontend con `VITE_DEMO_MODE=true`: permite recorrer proyectos, documentos, hallazgos, consultas, auditoria y cargas simuladas sin enviar informacion a un servidor. Los datos se identifican como simulados dentro de la interfaz y se reinician al recargar la aplicacion.
+
+El recorrido completo con Spring Boot, Python/gRPC, PostgreSQL, Temporal y MinIO se ejecuta localmente mediante Docker Compose.
+
 ## Recorrido funcional
 
 1. El usuario entra con el token de demostracion.
@@ -26,6 +34,7 @@ docker compose ps
 
 Abrir:
 
+- Demo publica: https://obraclara-demo.vercel.app
 - Aplicacion: http://localhost:3000
 - API: http://localhost:8080/actuator/health
 - Servicio IA: http://localhost:8000/health
@@ -94,6 +103,7 @@ Maven no es necesario en el host: el backend se compila con la etapa `build` de 
 ## Modos de ejecucion
 
 - Compose usa PostgreSQL, MinIO, Temporal y gRPC reales.
+- Vercel publica una demo frontend aislada con datos locales simulados.
 - Las pruebas del backend usan H2, almacenamiento local y launcher local.
 - `VITE_DEMO_MODE=true` activa datos visuales simulados sin backend.
 - `docker compose --profile search up -d opensearch` levanta OpenSearch para la siguiente fase de indexacion hibrida.

@@ -165,6 +165,7 @@ function demo<T>(value: T): Promise<T> {
 }
 
 const demoCreatedProjects: ProjectDetail[] = []
+const demoUploadedDocuments = new Map<string, DocumentRecord[]>()
 
 function asNumber(value: number | string | null | undefined): number {
   const parsed = Number(value)
@@ -440,12 +441,28 @@ export const api = {
 
   async getProject(projectId: string): Promise<ProjectDetail> {
     if (isDemoMode) {
+      const uploadedDocuments = demoUploadedDocuments.get(projectId) || []
       const created = demoCreatedProjects.find((project) => project.id === projectId)
-      if (created) return demo(created)
+      if (created) return demo({
+        ...created,
+        documentCount: created.documents.length + uploadedDocuments.length,
+        documents: [...uploadedDocuments, ...created.documents],
+      })
       const listed = dashboardMock.projects.find((project) => project.id === projectId)
       if (!listed) throw new ApiError('Proyecto no encontrado', 404)
-      if (listed.id === projectMock.id) return demo(projectMock)
-      return demo({ ...listed, budget: 'No informado', startDate: 'No informada', expectedEndDate: 'No informada', documents: [] })
+      if (listed.id === projectMock.id) return demo({
+        ...projectMock,
+        documentCount: projectMock.documents.length + uploadedDocuments.length,
+        documents: [...uploadedDocuments, ...projectMock.documents],
+      })
+      return demo({
+        ...listed,
+        budget: 'No informado',
+        startDate: 'No informada',
+        expectedEndDate: 'No informada',
+        documentCount: uploadedDocuments.length,
+        documents: uploadedDocuments,
+      })
     }
     const [projectDto, documentDtos] = await Promise.all([
       request<BackendProjectDto>(`/projects/${projectId}`),
@@ -464,7 +481,24 @@ export const api = {
   },
 
   async uploadDocument(projectId: string, file: File): Promise<{ id: string }> {
-    if (isDemoMode) return demo({ id: `doc-${Date.now()}` })
+    if (isDemoMode) {
+      const id = `doc-${Date.now()}`
+      const documents = demoUploadedDocuments.get(projectId) || []
+      documents.unshift({
+        id,
+        projectId,
+        name: file.name,
+        type: file.type === 'application/pdf' ? 'Documento PDF' : 'Documento de texto',
+        version: 'Demo',
+        size: formatBytes(file.size),
+        pages: null,
+        status: 'processed',
+        uploadedBy: 'Tú',
+        uploadedAt: 'Ahora',
+      })
+      demoUploadedDocuments.set(projectId, documents)
+      return demo({ id })
+    }
     const form = new FormData()
     form.append('file', file)
     const document = await request<BackendDocumentDto>(`/projects/${projectId}/documents`, { method: 'POST', body: form })
